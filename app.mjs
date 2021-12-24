@@ -1,16 +1,21 @@
 import Emitter from 'events';
-import { events } from './config.mjs';
 
-const emtr = new Emitter();
+class Greetr extends Emitter {
+	constructor() {
+		super();
+		this.greeting = 'Hello world';
+	}
 
-emtr.on(events.GREET, function () {
-	// this will run whenever the greet event is emitted
-	console.log('someone said, hello');
+	greet() {
+		console.log(this.greeting);
+		this.emit('greet');
+	}
+}
+
+const greeter1 = new Greetr();
+
+greeter1.on('greet', function () {
+	console.log('someone greeted');
 });
 
-emtr.on(events.GREET, function () {
-	console.log('a greeting occurred');
-});
-
-console.log('Hello!');
-emtr.emit('greet');
+greeter1.greet();
