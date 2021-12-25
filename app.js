@@ -1,9 +1,13 @@
-// Inheriting from the Event Emitter
+// Inheriting from the Event Emitter using .call
+
+// What if EventEmitter also adds properties and methods directrly to the
+// new object being created.
 
 const EventEmitter = require('events');
 const util = require('util');
 
 function Greetr() {
+	EventEmitter.call(this);
 	this.greeting = 'Hello World';
 }
 
