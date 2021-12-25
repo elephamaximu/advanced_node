@@ -1,21 +1,10 @@
-import Emitter from 'events';
+// .call method
 
-class Greetr extends Emitter {
-	constructor() {
-		super();
-		this.greeting = 'Hello world';
-	}
+const obj = {
+	name: 'Johne Doe',
+	greet: function (param) {
+		console.log(`hello ${this.name}`);
+	},
+};
 
-	greet(data) {
-		console.log(this.greeting + ':' + data);
-		this.emit('greet', data);
-	}
-}
-
-const greeter1 = new Greetr();
-
-greeter1.on('greet', function (data) {
-	console.log('someone greeted ' + data);
-});
-
-greeter1.greet('Plato');
+obj.greet.call({ name: 'plato' });
