@@ -1,27 +1,23 @@
-// Inheriting from the Event Emitter using .call
-
-// What if EventEmitter also adds properties and methods directrly to the
-// new object being created.
+// Inheriting using .call practice
 
 const EventEmitter = require('events');
 const util = require('util');
 
-function Greetr() {
-	EventEmitter.call(this);
-	this.greeting = 'Hello World';
+function Person() {
+	this.firstname = 'Plato';
+	this.lastname = 'Jung';
 }
 
-util.inherits(Greetr, EventEmitter);
-
-Greetr.prototype.greet = function () {
-	console.log(this.greeting);
-	this.emit('greet');
+Person.prototype.greet = function () {
+	console.log(`Hello ${this.firstname} ${this.lastname}`);
 };
 
-const greetr1 = new Greetr();
+function Policeman() {
+	Person.call(this);
+	this.badgenumber = '1234';
+}
 
-greetr1.on('greet', function () {
-	console.log('someone greeted');
-});
+util.inherits(Policeman, Person);
+const officer = new Policeman();
 
-greetr1.greet();
+officer.greet();
