@@ -1,15 +1,15 @@
-// use node event emitter with function constructor
-const Emitter = require('events');
+// Object.create and Prototypes
 
-const emtr = new Emitter();
+const person = {
+	firstname: '',
+	lastname: '',
+	greet: function () {
+		return this.firstname + ' ' + this.lastname;
+	},
+};
 
-emtr.on('greet', function () {
-	console.log('someone said hello');
-});
+const plato = Object.create(person);
+plato.firstname = 'plato';
+plato.lastname = 'Jung';
 
-emtr.on('greet', function () {
-	console.log('greeting occurred');
-});
-
-console.log('Hello');
-emtr.emit('greet');
+console.log(plato.greet());
