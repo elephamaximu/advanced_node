@@ -1,15 +1,23 @@
-// Object.create and Prototypes
+// Inheriting from the Event Emitter
 
-const person = {
-	firstname: '',
-	lastname: '',
-	greet: function () {
-		return this.firstname + ' ' + this.lastname;
-	},
+const EventEmitter = require('events');
+const util = require('util');
+
+function Greetr() {
+	this.greeting = 'Hello World';
+}
+
+util.inherits(Greetr, EventEmitter);
+
+Greetr.prototype.greet = function () {
+	console.log(this.greeting);
+	this.emit('greet');
 };
 
-const plato = Object.create(person);
-plato.firstname = 'plato';
-plato.lastname = 'Jung';
+const greetr1 = new Greetr();
 
-console.log(plato.greet());
+greetr1.on('greet', function () {
+	console.log('someone greeted');
+});
+
+greetr1.greet();
