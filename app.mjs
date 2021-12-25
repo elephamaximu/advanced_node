@@ -1,11 +1,22 @@
-// .apply method
+// inherit with super keyword
 
-const obj = {
-	name: 'Johne Doe',
-	greet: function (param) {
-		console.log(`hello ${this.name}`);
-		console.log(param);
-	},
-};
+class Person {
+	constructor() {
+		this.firstname = 'John';
+		this.lastname = 'Doe';
+	}
 
-obj.greet.apply({ name: 'plato' }, ['jung']);
+	greet() {
+		console.log(`Hello, ${this.firstname} ${this.lastname}`);
+	}
+}
+
+class Policeman extends Person {
+	constructor() {
+		super();
+		this.badgenumber = '1234';
+	}
+}
+
+const officer = new Policeman();
+officer.greet();
