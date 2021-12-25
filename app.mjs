@@ -1,9 +1,9 @@
-// inherit with super keyword
+// class as syntactic sugar
 
 class Person {
-	constructor() {
-		this.firstname = 'John';
-		this.lastname = 'Doe';
+	constructor(firstname, lastname) {
+		this.firstname = firstname;
+		this.lastname = lastname;
 	}
 
 	greet() {
@@ -11,12 +11,14 @@ class Person {
 	}
 }
 
-class Policeman extends Person {
-	constructor() {
-		super();
-		this.badgenumber = '1234';
-	}
-}
+const john = new Person('John', 'Doe');
+john.greet();
 
-const officer = new Policeman();
-officer.greet();
+const jane = new Person('Jane', 'Doe');
+jane.greet();
+
+console.log(john.__proto__);
+console.log(jane.__proto__);
+// Person {}
+
+console.log(john.__proto__ === jane.__proto__);
