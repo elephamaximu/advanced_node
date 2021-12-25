@@ -1,5 +1,5 @@
-// make custom event emitter with function constructor
-const Emitter = require('./emitter');
+// use node event emitter with function constructor
+const Emitter = require('events');
 
 const emtr = new Emitter();
 
