@@ -1,17 +1,18 @@
-// Buffers
+// Typed Arrays
 
-// I can either make a buffer and say the size
-// because the buffer is intended to be a particular finite size,
-// particular amount of memory
-// or I can give it some string value
-// and I can specify the encoding.
-const buf = new Buffer('Hello', 'utf8');
-// I asked buffer, take this string, convert it to binary data
+// 8bytes = 64bits
+// This is not coming from Node
+// coming from v8 JavaScript engine
+const buffer = new ArrayBuffer(8);
 
-console.log(buf);
-console.log(buf.toString());
-console.log(buf.toJSON());
-console.log(buf[2]);
+// view is actually Typed Array meaning that it's an array
+// I can deal with it as an array.
+// and then give it to buffer to work with.
+// simply a way for me to deal with the binary data in the buffer.
+// we can store two numbers in this view 64/32
+var view = new Int32Array(buffer);
 
-buf.write('wo');
-console.log(buf.toString());
+view[0] = 5;
+view[1] = 15;
+
+console.log(view);
