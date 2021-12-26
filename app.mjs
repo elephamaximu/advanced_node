@@ -1,24 +1,17 @@
-// class as syntactic sugar
+// Buffers
 
-class Person {
-	constructor(firstname, lastname) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-	}
+// I can either make a buffer and say the size
+// because the buffer is intended to be a particular finite size,
+// particular amount of memory
+// or I can give it some string value
+// and I can specify the encoding.
+const buf = new Buffer('Hello', 'utf8');
+// I asked buffer, take this string, convert it to binary data
 
-	greet() {
-		console.log(`Hello, ${this.firstname} ${this.lastname}`);
-	}
-}
+console.log(buf);
+console.log(buf.toString());
+console.log(buf.toJSON());
+console.log(buf[2]);
 
-const john = new Person('John', 'Doe');
-john.greet();
-
-const jane = new Person('Jane', 'Doe');
-jane.greet();
-
-console.log(john.__proto__);
-console.log(jane.__proto__);
-// Person {}
-
-console.log(john.__proto__ === jane.__proto__);
+buf.write('wo');
+console.log(buf.toString());
